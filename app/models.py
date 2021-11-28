@@ -1,6 +1,8 @@
 from app import db
 from sqlalchemy import Column, ForeignKey, Index, Integer, String, Date, Boolean, Float
 
+# TODO: Пересмотреть ассоциативные таблицы
+
 
 class Rent(db.Model):
     id              = Column(Integer, primary_key=True, nullable=False)
