@@ -29,7 +29,7 @@ def create_rooms(count: int):
             single_beds = 1
 
         showers = randint(0, 3)
-        toilets = randint(0, 3)
+        toilets = randint(1, 3)
 
         sess.add(Room(
             busy=busy, cost=cost,
