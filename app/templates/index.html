@@ -4,11 +4,10 @@
         <link rel="stylesheet" href="{{url_for('static', filename='styles/base.css')}}">
         {% block head %}{% endblock %}
     </head>
-    <body class="hg-page-outer">
-        <div class="hg-page-inner">
+    <body class="hg-page-wrapper">
+        <div class="hg-page-outer">
             <header>Сайт работает</header>
-            <main>
-                <div class="page">
+            <main class="hg-page-inner">
                     <form action="" method="POST">
                         {{ form.csrf_token() }}
                         {{ form.user }}
@@ -21,9 +20,9 @@
                     <aside>
                         asd
                     </aside>
-                </div>
             </main>
+
         </div>
-        <footer></footer>
+        <footer>SDFG</footer>
     </body>
 </html>

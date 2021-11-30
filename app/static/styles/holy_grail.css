@@ -2,23 +2,21 @@ body, html {
     height: 100%;
 }
 
-.hg-page-outer {
+.hg-page-wrapper {
     display: flex;
     flex-direction: column;
 }
 
-.hg-page-inner {
+.hg-page-outer {
    display: grid;
    grid-template-rows: min-content;
    flex: 1 0 auto;
-   background-color: var(--page-layer-1);
 }
 
-.page {
+.hg-page-inner {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    row-gap: 50px;
 
     height: 100%;
 }
@@ -39,6 +37,5 @@ header {
 }
 
 footer {
-    height: 100px;
     background-color: purple;
 }
