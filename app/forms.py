@@ -40,27 +40,29 @@ class RoomForm(FlaskForm):
     def update_on_submit(self):
         if self.btn_add_tenant.data:
             self.add_tenant()
-            return True
+            return self.btn_add_tenant
         else: return False
 
 
 class RentForm(FlaskForm):
-    room            = FieldList(FormField(RoomForm))
-    btn_add_rent    = SubmitField('Забронировать номер')
+    rooms            = FieldList(FormField(RoomForm))
+    btn_add_room    = SubmitField('Добавить номер')
 
     def add_room(self):
-        self.room.append_entry()
+        self.rooms.append_entry()
 
     def update_on_submit(self):
-        if self.btn_add_rent.data:
+        if self.btn_add_room.data:
             self.add_room()
-            return True
-        else: return False
+            return self.btn_add_room
+        else:
+            for room in self.rooms:
+                return room.update_on_submit()
 
 
 class RegisterForm(FlaskForm):
-    user            = FormField(UserForm('Регистрация'))
-    rents           = FieldList(FormField(RentForm('Бронирование номера')))
+    user            = FormField(UserForm)
+    rents           = FieldList(FormField(RentForm))
 
     btn_add_rent    = SubmitField('Забронировать номер')
     btn_register    = SubmitField('Зарегистрироваться')
@@ -71,5 +73,7 @@ class RegisterForm(FlaskForm):
     def update_on_submit(self):
         if self.btn_add_rent.data:
             self.add_rent()
-            return True
-        else: return False
+            return self.btn_add_rent
+        else:
+            for rent in self.rents:
+                return rent.update_on_submit()

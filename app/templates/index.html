@@ -1,11 +1,29 @@
 <!DOCTYPE HTML PUBLIC>
 <html>
     <head>
-
+        <link rel="stylesheet" href="{{url_for('static', filename='styles/base.css')}}">
+        {% block head %}{% endblock %}
     </head>
-    <body>
-        <header>Сайт работает</header>
-        <main></main>
+    <body class="hg-page-outer">
+        <div class="hg-page-inner">
+            <header>Сайт работает</header>
+            <main>
+                <div class="page">
+                    <form action="" method="POST">
+                        {{ form.csrf_token() }}
+                        {{ form.user }}
+                        {% for rent in form.rents %}
+                            {{ rent.btn_add_room }}
+                        {% endfor %}
+                        {{ form.btn_add_rent }}
+                        {{ form.btn_register }}
+                    </form>
+                    <aside>
+                        asd
+                    </aside>
+                </div>
+            </main>
+        </div>
         <footer></footer>
     </body>
 </html>

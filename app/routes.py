@@ -5,7 +5,17 @@ from app import forms
 from flask_login import current_user, login_user, login_required, logout_user
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['POST', 'GET'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    from app.forms import RegisterForm
+    form = RegisterForm()
+
+    updated = form.update_on_submit()
+    if updated:
+        print('Form is updated', updated)
+        pass
+    elif form.validate_on_submit():
+        print('Form has been validated...')
+
+    return render_template('index.html', form=form)

@@ -1,0 +1,44 @@
+body, html {
+    height: 100%;
+}
+
+.hg-page-outer {
+    display: flex;
+    flex-direction: column;
+}
+
+.hg-page-inner {
+   display: grid;
+   grid-template-rows: min-content;
+   flex: 1 0 auto;
+   background-color: var(--page-layer-1);
+}
+
+.page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    row-gap: 50px;
+
+    height: 100%;
+}
+
+main {
+
+    background-color: lightgray;
+}
+
+aside {
+    width: 100px;
+    background-color: gray;
+}
+
+header {
+    height: 50px;
+    background-color: green;
+}
+
+footer {
+    height: 100px;
+    background-color: purple;
+}
