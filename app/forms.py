@@ -24,9 +24,52 @@ class TenantForm(FlaskForm):
     email           = EmailField('Номер телефона', validators=[optional(), email()])
 
 
-class RentForm(FlaskForm):
+class RoomForm(FlaskForm):
     from app import db
     from app.models import Room
-    room_id = RadioField('Номер комнаты', validators=[input_required()])
+    tenants         = FieldList(FormField(TenantForm))
+    room_id         = RadioField('Номер комнаты', choices=[(i, 'pipa') for i in range(10)], validators=[input_required()])
+    beg_of_period   = DateField('Начало аренды')
+    end_of_period   = DateField('Конец аренды', validators=[input_required()])
 
-    end_of_period = DateField('Конец аренды', validators=[input_required()])
+    btn_add_tenant = SubmitField('Добавить жильца')
+
+    def add_tenant(self):
+        self.tenants.append_entry()
+
+    def update_on_submit(self):
+        if self.btn_add_tenant.data:
+            self.add_tenant()
+            return True
+        else: return False
+
+
+class RentForm(FlaskForm):
+    room            = FieldList(FormField(RoomForm))
+    btn_add_rent    = SubmitField('Забронировать номер')
+
+    def add_room(self):
+        self.room.append_entry()
+
+    def update_on_submit(self):
+        if self.btn_add_rent.data:
+            self.add_room()
+            return True
+        else: return False
+
+
+class RegisterForm(FlaskForm):
+    user            = FormField(UserForm('Регистрация'))
+    rents           = FieldList(FormField(RentForm('Бронирование номера')))
+
+    btn_add_rent    = SubmitField('Забронировать номер')
+    btn_register    = SubmitField('Зарегистрироваться')
+
+    def add_rent(self):
+        self.rents.append_entry()
+
+    def update_on_submit(self):
+        if self.btn_add_rent.data:
+            self.add_rent()
+            return True
+        else: return False
