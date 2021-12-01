@@ -47,16 +47,19 @@ label {
 main.page {
     z-index: 1;
     position: relative;
-    width: 100%;
-    box-shadow: 0 0 50px 1px rgba(0, 0, 0, 0.1);
+    background-color: #5C5847;
+    box-shadow: 0 0 50px 1px rgba(0, 0, 0, 0.3);
 }
 
 aside.page {
     z-index: 0;
+    flex: 0 0 400px;
     position: relative;
 }
 
 header {
+    z-index: 2;
+    position: relative;
     height: 50px;
 }
 
