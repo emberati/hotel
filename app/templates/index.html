@@ -1,28 +1,19 @@
-<!DOCTYPE HTML PUBLIC>
-<html>
-    <head>
-        <link rel="stylesheet" href="{{url_for('static', filename='styles/base.css')}}">
-        {% block head %}{% endblock %}
-    </head>
-    <body class="hg-page-wrapper">
-        <div class="hg-page-outer">
-            <header>Сайт работает</header>
-            <main class="hg-page-inner">
-                    <form action="" method="POST">
-                        {{ form.csrf_token() }}
-                        {{ form.user }}
-                        {% for rent in form.rents %}
-                            {{ rent.btn_add_room }}
-                        {% endfor %}
-                        {{ form.btn_add_rent }}
-                        {{ form.btn_register }}
-                    </form>
-                    <aside>
-                        asd
-                    </aside>
-            </main>
+{% extends 'base.html'%}
 
-        </div>
-        <footer>SDFG</footer>
-    </body>
-</html>
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }} ">
+{% endblock %}
+
+{% block content %}
+<form class="float-box" action="" method="POST">
+    {{ form.csrf_token() }}
+    {{ form.user.username.label }}
+    {{ form.user.username(class="string-input") }}
+    {{ form.user.password.label }}
+    {{ form.user.password(class="string-input") }}
+    {{ form.user.repeat_password.label }}
+    {{ form.user.repeat_password(class="string-input") }}
+
+    {{ form.btn_register(class="btn-submit") }}
+</form>
+{% endblock %}

@@ -11,11 +11,7 @@ def index():
     from app.forms import RegisterForm
     form = RegisterForm()
 
-    updated = form.update_on_submit()
-    if updated:
-        print('Form is updated', updated)
-        pass
-    elif form.validate_on_submit():
+    if form.validate_on_submit():
         print('Form has been validated...')
 
     return render_template('index.html', form=form)

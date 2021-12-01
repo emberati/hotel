@@ -20,22 +20,3 @@ body, html {
 
     height: 100%;
 }
-
-main {
-
-    background-color: lightgray;
-}
-
-aside {
-    width: 100px;
-    background-color: gray;
-}
-
-header {
-    height: 50px;
-    background-color: green;
-}
-
-footer {
-    background-color: purple;
-}

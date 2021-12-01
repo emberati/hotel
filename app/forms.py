@@ -62,18 +62,5 @@ class RentForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     user            = FormField(UserForm)
-    rents           = FieldList(FormField(RentForm))
 
-    btn_add_rent    = SubmitField('Забронировать номер')
     btn_register    = SubmitField('Зарегистрироваться')
-
-    def add_rent(self):
-        self.rents.append_entry()
-
-    def update_on_submit(self):
-        if self.btn_add_rent.data:
-            self.add_rent()
-            return self.btn_add_rent
-        else:
-            for rent in self.rents:
-                return rent.update_on_submit()
