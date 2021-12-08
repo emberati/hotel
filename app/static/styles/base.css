@@ -46,7 +46,10 @@ label {
 
 main.page {
     z-index: 1;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
     position: relative;
+    width: 100%;
     background-color: #5C5847;
     box-shadow: 0 0 50px 1px rgba(0, 0, 0, 0.3);
 }
@@ -55,17 +58,14 @@ aside.page {
     z-index: 0;
     flex: 0 0 400px;
     position: relative;
+    min-width: 400px;
+    background-color: var(--white);
 }
 
 header {
     z-index: 2;
     position: relative;
     height: 50px;
-}
-
-aside {
-    width: 400px;
-    background-color: var(--white);
 }
 
 nav#top-menu {
@@ -75,12 +75,8 @@ nav#top-menu {
     justify-content: space-between;
 }
 
-.container {
-
-}
-
 .content {
-    max-width: 1400px;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
 }

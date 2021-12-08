@@ -8,15 +8,14 @@ body, html {
 }
 
 .hg-page-outer {
-   display: grid;
-   grid-template-rows: min-content;
-   flex: 1 0 auto;
+    display: grid;
+    grid-template-rows: min-content;
+    flex: 1 0 auto;
 }
 
 .hg-page-inner {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
     height: 100%;
 }
