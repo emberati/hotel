@@ -2,4 +2,9 @@
     --deep-black: #000000;
     --gold-yellow: #FFBA33;
     --white: #FFFFFF;
+
+    --accent-foreground: #D0D7DE;
+    --accent-background: #000000;
+    --layout-foreground: #FFFFFF;
+    --layout-background: #F6F8FA;
 }

@@ -7,12 +7,31 @@
     width: 100%;
 
     font-size: 24px;
-    border-bottom: 2px solid var(--deep-black);
-    transition: .3s ease-in-out;
+    border: 1px solid transparent;
+    background-color: var(--layout-background);
+    transition: border-color .3s ease-in-out;
+}
+
+.string-input:hover {
+    border-color: var(--accent-foreground);
 }
 
 .string-input:focus {
     border-color: var(--gold-yellow);
+    transition: border-color .3s ease-in-out;
+}
+/*
+.str-input-wrapper > .string-input:hover + .underline {
+    background-color: var(--accent-foreground);
+    transition: background-color: .3s ease-in-out;
+}
+*/
+
+.str-input-wrapper > .string-input:focus + .underline::after {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--gold-yellow);
 }
 
 .float-box {
@@ -22,7 +41,7 @@
     padding: 50px;
     width: 400px;
     background: var(--white);
-    border: 2px solid var(--deep-black);
+    border: 2px solid var(--accent-foreground);
 }
 
 .float-box input:last-child {
@@ -37,16 +56,29 @@ input[type="submit"] {
     width: 100%;
 }
 
+/*        UNDERLINE        */
+
+/* Отвечает за границы подчеркивания (и как следствие цвета подчёркивания),
+ * всегда равен полной ширине родительского элемента
+ */
 .underline {
-    display: block;
-    height: 2px;
+    height: 5px;
     width: 100%;
     background-color: transparent;
     transition: background-color .3s ease-in-out;
 }
 
-.underline-container:hover .underline {
-    background-color: var(--white);
+/* Отвечает за содержимое подчёркивания (и как следствие ширины подчёркивания,
+ * относительно границ родительской обёртки подчёркивания).
+ * Ширина меняется динамически.
+ */
+.underline::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 0%;
+    background-color: transparent;
+    transition: width .3s ease-in-out;
 }
 
 /*    VERTICAL ALIGN    */

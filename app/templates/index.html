@@ -8,12 +8,20 @@
 <form class="float-box" action="" method="POST">
     {{ form.csrf_token() }}
     {{ form.user.username.label }}
-    {{ form.user.username(class="string-input") }}
+    <div class="str-input-wrapper underline-container">
+        {{ form.user.username(class="string-input underline-container") }}
+        <div class="underline"></div>
+    </div>
     {{ form.user.password.label }}
-    {{ form.user.password(class="string-input") }}
+    <div class="str-input-wrapper underline-container">
+        {{ form.user.password(class="string-input") }}
+        <div class="underline"></div>
+    </div>
     {{ form.user.repeat_password.label }}
-    {{ form.user.repeat_password(class="string-input") }}
-
+    <div class="str-input-wrapper underline-container">
+        {{ form.user.repeat_password(class="string-input") }}
+        <div class="underline"></div>
+    </div>
     {{ form.btn_register(class="btn-submit") }}
 </form>
 {% endblock %}

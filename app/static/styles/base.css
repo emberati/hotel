@@ -75,6 +75,11 @@ nav#top-menu {
     justify-content: space-between;
 }
 
+.menu-item-wrapper.underline-container:hover > .underline::after {
+    width: 100%;
+    background-color: var(--white);
+}
+
 .content {
     width: 90%;
     margin-left: auto;
