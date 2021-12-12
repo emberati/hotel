@@ -4,4 +4,8 @@
 
 {% block content %}
     <h1>{{username}}:{{id}}</h1>
+    {% for cat, msg in get_flashed_messages(True) %}
+    {% set message_classes = 'row-content flash ' + cat %}
+        {% include 'message_pane.html' %}
+    {% endfor %}
 {% endblock %}

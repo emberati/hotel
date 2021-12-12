@@ -64,6 +64,12 @@ aside.page {
     position: relative;
     min-width: 400px;
     background-color: var(--white);
+    transition: min-width .3s ease-in-out, flex-basis .3s ease-in-out;
+}
+
+aside.page.folded-width {
+    flex-basis: 0px;
+    min-width: 0px;
 }
 
 header {
@@ -94,12 +100,14 @@ nav#options > *:first-child {
     margin-right: 20px;
 }
 
-.menu-items .underline-container:hover > .underline::after {
+.menu-items .page-link:hover ~ .underline::after,
+.menu-items .page-link:focus ~ .underline::after {
     width: 100%;
-    background-color: var(--white);
+    background-color: var(--gold-yellow);
 }
 
 .page-link {
+    outline: none;
     color: var(--white);
 }
 

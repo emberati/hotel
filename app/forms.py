@@ -70,4 +70,5 @@ class LoginUserForm(FlaskForm):
     username = StringField('Логин', validators=[input_required(), length(min=3, max=16)])
     password = PasswordField('Пароль', validators=[input_required(), length(min=4)])
 
+    remember = BooleanField('Не выходить из аккаунта')
     btn_login = SubmitField('Войти')
