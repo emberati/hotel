@@ -7,39 +7,67 @@
     </head>
     <body class="hg-page-wrapper container">
         <div class="hg-page-outer">
-            <header class="content">
-                <nav id="top-menu">
-                    <div class="vertical-align-wrapper underline-container menu-item-wrapper">
-                        <a href="" class="page-link vertical-align-outer">
-                            <span class="vertical-align-inner">Главная</span>
-                        </a>
-                        <div class="underline"></div>
-                    </div>
-                    <div class="vertical-align-wrapper underline-container menu-item-wrapper">
-                        <a href="" class="page-link vertical-align-outer">
-                            <span class="vertical-align-inner">Забронировать</span>
-                        </a>
-                        <div class="underline"></div>
-                    </div>
-                    <div class="vertical-align-wrapper underline-container menu-item-wrapper">
-                        <a href="" class="page-link vertical-align-outer">
-                            <span class="vertical-align-inner">Регистрация</span>
-                        </a>
-                        <div class="underline"></div>
-                    </div>
-                    <div class="vertical-align-wrapper underline-container menu-item-wrapper">
-                        <a href="" class="page-link vertical-align-outer">
-                            <span class="vertical-align-inner">Статистика</span>
-                        </a>
-                        <div class="underline"></div>
-                    </div>
-                </nav>
+            <header>
+                <div class="nav-wrapper content">
+                    <nav id="top-menu" class="menu-items">
+                        <div class="vertical-align-wrapper underline-container menu-item-wrapper">
+                            <a href="" class="page-link vertical-align-outer">
+                                <span class="vertical-align-inner">Главная</span>
+                            </a>
+                            <div class="underline"></div>
+                        </div>
+                        <div class="vertical-align-wrapper underline-container menu-item-wrapper">
+                            <a href="" class="page-link vertical-align-outer">
+                                <span class="vertical-align-inner">Забронировать</span>
+                            </a>
+                            <div class="underline"></div>
+                        </div>
+                        <div class="vertical-align-wrapper underline-container menu-item-wrapper">
+                            <a href="" class="page-link vertical-align-outer">
+                                <span class="vertical-align-inner">Регистрация</span>
+                            </a>
+                            <div class="underline"></div>
+                        </div>
+                        <div class="vertical-align-wrapper underline-container menu-item-wrapper">
+                            <a href="" class="page-link vertical-align-outer">
+                                <span class="vertical-align-inner">Статистика</span>
+                            </a>
+                            <div class="underline"></div>
+                        </div>
+                    </nav>
+                    <nav id="options" class="menu-items">
+                        <div class="vertical-align-wrapper underline-container">
+                            <script type="text/javascript">
+                                function hideSide() {
+                                    let el = document.getElementById("side-menu");
+                                    let display = el.style.display;
+                                    if (display == "none") {
+                                        el.style.display = "initial";
+                                    } else {
+                                        el.style.display = "none";
+                                    }
+                                    console.log(display)
+                                }
+                            </script>
+                            <div onclick="hideSide()" class="page-link vertical-align-outer">
+                                <span class="vertical-align-inner">Жильцы</span>
+                            </div>
+                            <div class="underline"></div>
+                        </div>
+                        <div class="vertical-align-wrapper underline-container">
+                            <a href="" class="page-link vertical-align-outer">
+                                <span class="vertical-align-inner">Выйти</span>
+                            </a>
+                            <div class="underline"></div>
+                        </div>
+                    </nav>
+                </div>
             </header>
             <div class="hg-page-inner content">
                 <main class="page">
                     {% block content %}{% endblock %}
                 </main>
-                <aside class="page"></aside>
+                <aside id="side-menu" class="page"></aside>
             </div>
         </div>
         <footer>

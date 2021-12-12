@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }} ">
+{% endblock %}
+
+{% block content %}
+    <form class="float-box" action="" method="POST">
+        {% for cat, msg in get_flashed_messages(True) %}
+            {% set message_classes = 'row-content flash ' + cat %}
+            {% include 'message_pane.html' %}
+        {% endfor %}
+
+        {{ form.csrf_token() }}
+        <div class="row-content">
+            {{ form.username.label }}
+            <div class="str-input-wrapper underline-container">
+                {{ form.username(class="string-input underline-container") }}
+                <div class="underline"></div>
+            </div>
+        </div>
+        <div class="row-content">
+            {{ form.password.label }}
+            <div class="str-input-wrapper underline-container">
+                {{ form.password(class="string-input") }}
+                <div class="underline"></div>
+            </div>
+        </div>
+        {{ form.btn_login(class="btn-submit") }}
+    </form>
+{% endblock %}

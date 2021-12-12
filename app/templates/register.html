@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %} {% endblock %}
+
+{% block content %}
+    <form class="float-box" action="" method="POST">
+        {% for cat, msg in get_flashed_messages() %}
+            {% set message_classes = 'row-content flash ' + cat %}
+            {% include 'message_pane.html' %}
+        {% endfor %}
+
+        {{ form.csrf_token() }}
+        {{ form.user.csrf_token() }}
+        <div class="row-content">
+            {{ form.user.username.label }}
+            <div class="str-input-wrapper underline-container">
+                {{ form.user.username(class="string-input underline-container") }}
+                <div class="underline"></div>
+            </div>
+        </div>
+        <div class="row-content">
+            {{ form.user.password.label }}
+            <div class="str-input-wrapper underline-container">
+                {{ form.user.password(class="string-input") }}
+                <div class="underline"></div>
+            </div>
+        </div>
+        <div class="row-content">
+            {{ form.user.repeat_password.label }}
+            <div class="str-input-wrapper underline-container">
+                {{ form.user.repeat_password(class="string-input") }}
+                <div class="underline"></div>
+            </div>
+        </div>
+        {{ form.btn_register(class="btn-submit") }}
+    </form>
+{% endblock %}

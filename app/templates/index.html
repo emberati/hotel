@@ -1,27 +1,7 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }} ">
-{% endblock %}
+{% block head %} {% endblock %}
 
 {% block content %}
-<form class="float-box" action="" method="POST">
-    {{ form.csrf_token() }}
-    {{ form.user.username.label }}
-    <div class="str-input-wrapper underline-container">
-        {{ form.user.username(class="string-input underline-container") }}
-        <div class="underline"></div>
-    </div>
-    {{ form.user.password.label }}
-    <div class="str-input-wrapper underline-container">
-        {{ form.user.password(class="string-input") }}
-        <div class="underline"></div>
-    </div>
-    {{ form.user.repeat_password.label }}
-    <div class="str-input-wrapper underline-container">
-        {{ form.user.repeat_password(class="string-input") }}
-        <div class="underline"></div>
-    </div>
-    {{ form.btn_register(class="btn-submit") }}
-</form>
+    <h1>{{username}}:{{id}}</h1>
 {% endblock %}

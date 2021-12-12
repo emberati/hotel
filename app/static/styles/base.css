@@ -13,10 +13,6 @@ h1, h2, h3, p, span, a, strong, input, label {
     text-decoration: none;
 }
 
-a.page-link {
-    color: var(--white);
-}
-
 h1 {
     font-weight: 900;
     font-size: 32px;
@@ -44,13 +40,21 @@ label {
     padding-top: 50px;
 }
 
+.page h1,
+.page h2,
+.page h3,
+.page label {
+    display: block;
+    margin-bottom: 20px;
+}
+
 main.page {
     z-index: 1;
     /* margin-left: auto; */
     /* margin-right: auto; */
     position: relative;
     width: 100%;
-    background-color: #5C5847;
+    background-color: var(--white);
     box-shadow: 0 0 50px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -66,22 +70,49 @@ header {
     z-index: 2;
     position: relative;
     height: 50px;
+    background-color: var(--deep-black);
 }
 
-nav#top-menu {
-    display: flex;
-    width: 500px;
+.nav-wrapper {
     height: 100%;
+    display: flex;
     justify-content: space-between;
 }
 
-.menu-item-wrapper.underline-container:hover > .underline::after {
+nav.menu-items {
+    display: flex;
+    height: 100%;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+nav#top-menu {
+    width: 500px;
+}
+
+nav#options > *:first-child {
+    margin-right: 20px;
+}
+
+.menu-items .underline-container:hover > .underline::after {
     width: 100%;
     background-color: var(--white);
+}
+
+.page-link {
+    color: var(--white);
 }
 
 .content {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.hg-page-wrapper {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../resources/images/room-0.jpg');
 }

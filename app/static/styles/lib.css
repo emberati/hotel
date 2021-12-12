@@ -39,16 +39,17 @@
     margin-left: auto;
     margin-right: auto;
     padding: 50px;
-    width: 400px;
+    width: 600px;
     background: var(--white);
-    border: 2px solid var(--accent-foreground);
+    border-radius: 10px;
+    border: 1px solid var(--accent-foreground);
 }
 
 .float-box input:last-child {
     margin-bottom: 0;
 }
 
-.float-box > input {
+.row-content {
     margin-bottom: 30px;
 }
 
@@ -97,37 +98,20 @@ input[type="submit"] {
     margin-bottom: auto;
 }
 
-/* CSS */
 .btn-submit {
-  align-items: center;
-  background-color: #fff;
-  border: 2px solid #000;
-  box-sizing: border-box;
-  color: #000;
-  cursor: pointer;
-  display: inline-flex;
-  fill: #000;
-  font-family: Inter,sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  height: 48px;
-  justify-content: center;
-  letter-spacing: -.8px;
-  line-height: 24px;
-  min-width: 140px;
-  outline: 0;
-  padding: 0 17px;
-  text-align: center;
-  text-decoration: none;
-  transition: all .3s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+    height: 50px;
+
+    font-family: 'Montserrat';
+    font-weight: 700;
+    color: var(--white);
+    outline: none;
+    border: 2px solid var(--gold-yellow);
+    background-color: var(--gold-yellow);
+    transition: box-shadow .3s ease-in-out;
 }
 
 .btn-submit:hover {
-  border-color: var(--gold-yellow);
-  color: var(--gold-yellow);
+  box-shadow: inset 0 0 0 2px var(--white);
   fill: var(--gold-yellow);
 }
 
@@ -135,4 +119,22 @@ input[type="submit"] {
   .btn-submit {
     min-width: 170px;
   }
+}
+
+/*    MESSAGES    */
+
+.flash {
+    padding: 10px;
+}
+
+.flash.warning {
+    color: var(--warning-foreground);
+    background-color: var(--warning-background);
+    border: 1px solid var(--warning-foreground);
+}
+
+.flash.success {
+    color: var(--success-foreground);
+    background-color: var(--success-background);
+    border: 1px solid var(--success-foreground);
 }

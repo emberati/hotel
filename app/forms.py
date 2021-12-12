@@ -60,7 +60,14 @@ class RentForm(FlaskForm):
                 return room.update_on_submit()
 
 
-class RegisterForm(FlaskForm):
+class RegisterUserForm(FlaskForm):
     user            = FormField(UserForm)
 
     btn_register    = SubmitField('Зарегистрироваться')
+
+
+class LoginUserForm(FlaskForm):
+    username = StringField('Логин', validators=[input_required(), length(min=3, max=16)])
+    password = PasswordField('Пароль', validators=[input_required(), length(min=4)])
+
+    btn_login = SubmitField('Войти')
