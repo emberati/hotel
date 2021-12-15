@@ -128,13 +128,12 @@ input[type="submit"] {
 }
 
 .flash.warning {
-    color: var(--warning-foreground);
     background-color: var(--warning-background);
     border: 1px solid var(--warning-foreground);
-}
+} .flash.warning * {color: var(--warning-foreground);}
 
-.flash.success {
-    color: var(--success-foreground);
+.flash.message {
+    color: var(--success-solid);
     background-color: var(--success-background);
     border: 1px solid var(--success-foreground);
 }

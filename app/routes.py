@@ -30,6 +30,7 @@ def statistics():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginUserForm()
+    next = request.args.get('next')
 
     if form.validate_on_submit():
         username = form.username.data
@@ -40,12 +41,14 @@ def login():
             user.authenticated = user.check_password(password)
             if user.is_authenticated:
                 login_user(user, remember=remember)
-                flash('Вы успешно вошли!', category='success')
+                redirect(url_for(next) if next else url_for('booking'))
+                flash('Вы успешно вошли!', category='message')
             else:
                 flash('Неверный пароль!',  category='warning')
         else:
             flash(f'Пользователя {username} не существует!', category='warning')  # TODO: categories
         print('Form has been validated...')
+
     return render_template('login.html', form=form)
 
 
@@ -53,8 +56,8 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash('Вы вышли из аккаунта.', category='success')
-    return redirect(url_for('index'))
+    flash('Вы вышли из аккаунта.', category='message')
+    return redirect(url_for('login'))
 
 
 @app.route('/register', methods=['POST', 'GET'])
