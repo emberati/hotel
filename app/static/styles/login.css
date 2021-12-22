@@ -1,0 +1,18 @@
+.register-row > * {
+    float: left;
+    margin-right: 10px;
+}
+
+.register-row > *:last-child {
+    margin-right: 0;
+}
+
+.register-row .underline-container:hover a {
+    transition: color .3s ease-in-out;
+    color: var(--gold-orange);
+}
+
+.register-row .underline-container:hover .underline::after {
+    background-color: var(--gold-orange);
+    width: 100%;
+}

@@ -26,6 +26,13 @@
                 <div class="underline"></div>
             </div>
         </div>
+        <div class="row-content register-row clearfix">
+            <p>Нет аккаунта?</p>
+            <div class="underline-container">
+                <a href="{{url_for('register')}}" class="">Зарегистрироваться</a>
+                <div class="underline"></div>
+            </div>
+        </div>
         {{ form.btn_login(class="btn-submit") }}
     </form>
 {% endblock %}

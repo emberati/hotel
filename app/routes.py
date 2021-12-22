@@ -1,31 +1,31 @@
 from app import app, db
 from flask import render_template, redirect, url_for, flash, request
-from app import forms
-from app import login_manager
-from flask_login import current_user, login_required, login_user, logout_user
+from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
-from app.models import User
+from app.models import User, AnonymousUser
 from app.forms import RegisterUserForm, LoginUserForm
+
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.anonymous_user = AnonymousUser
 
 
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-    #username = current_user.username
-    #id = current_user.get_id()
-    return render_template('index.html')#, username=username, id=id)
+    flash('Тестовое плавающее сообщение', category='message')
+    return render_template('index.html', current_user=current_user)
 
 
 @app.route('/booking', methods=['GET', 'POST'])
 @login_required
 def booking():
-    return '<h1>Test booking page</h1>'
+    return render_template('booking.html')
 
 
 @app.route('/statistics')
 def statistics():
-    return '<h1>Test statistics page</h1>'
-
+    return render_template('statistics.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -41,8 +41,8 @@ def login():
             user.authenticated = user.check_password(password)
             if user.is_authenticated:
                 login_user(user, remember=remember)
-                redirect(next if next else url_for('booking'))
-                flash('Вы успешно вошли!', category='message')
+                flash(f'Вы успешно вошли! Аккаунт: {username}', category='message')
+                return redirect(next if next else url_for('index'))
             else:
                 flash('Неверный пароль!',  category='warning')
         else:

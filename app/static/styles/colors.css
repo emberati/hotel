@@ -7,17 +7,39 @@
     --layout-foreground: #FFFFFF;
     --layout-background: #F6F8FA;
 
-    --warning-foreground: #F25C54;
-    --warning-background: #F7B267;
-
-    --success-foreground: #79AEA3;
-    --success-background: #70EE9C;
-    --success-solid: #5C998D;
-
     --oxford-blue: #14213D;
     --deep-sea: #3D405B;
     --gold-orange: #FCA311;
     --gold-yellow: #FFBA33;
     --platinum-gray: #E5E5E5;
     --grim-gray: #D0D7DE;
+}
+
+/*    COLOR INITIALIZING    */
+:root {
+    --sienna-red: #E76F51;
+    --ashberry-red: #F25C54;
+    --red-send-orange: #F4A261;
+    --orange-orange: #F7B267;
+    --lemon-yellow: #E9C46A;
+    --persian-green: #2A9D8F;
+    --pine-green: #264653;
+    --emerald-green: #79AEA3;
+    --avocado-green: #70EE9C;
+}
+
+/*    COLOR DEFINING    */
+:root {
+/*
+    --warning-foreground: var(--sienna-red);
+    --warning-background: var(--red-send-orange);
+
+    --success-foreground: var(--pine-green);
+    --success-background: var(--persian-green);
+*/
+
+    --warning-contour: var(--ashberry-red);
+    --warning-layer: var(--orange-orange);
+    --success-contour: var(--persian-green);
+    --success-layer: var(--avocado-green);
 }

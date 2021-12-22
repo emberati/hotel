@@ -18,7 +18,7 @@ h1 {
     font-size: 32px;
 }
 
-h2, h3 {
+h2, h3, strong {
     font-weight: 700;
 }
 
@@ -30,20 +30,29 @@ h3 {
     font-size: 20px;
 }
 
+.row-content > label {
+    display: block;
+    margin-bottom: 10px;
+}
+
 label {
-    text-transform: uppercase;
+    font-size: 20px;
     font-weight: 700;
-    font-size: 24px;
 }
 
 .page {
     padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.page-content {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .page h1,
 .page h2,
-.page h3,
-.page label {
+.page h3 {
     display: block;
     margin-bottom: 20px;
 }
@@ -73,6 +82,7 @@ aside.page {
 aside.page.folded-width {
     flex-basis: 0px;
     min-width: 0px;
+    border-right: none;
 }
 
 header {
@@ -102,17 +112,17 @@ nav.menu-items {
     height: 100%;
     cursor: pointer;
     user-select: none;
-    justify-content: space-between;
 }
 
-nav#top-menu {
-    width: 500px;
-}
+nav#top-menu > * {
+    margin-right: 20px;
+} nav#top-menu > *:last-child {margin-right: 0;}
 
 nav#options > *:first-child {
     margin-right: 20px;
 }
 
+.menu-items .underline {height: 5px;}
 .menu-items .page-link:hover ~ .underline::after,
 .menu-items .page-link:focus ~ .underline::after {
     width: 100%;
@@ -122,6 +132,10 @@ nav#options > *:first-child {
 .page-link {
     outline: none;
     color: var(--white);
+}
+
+.container {
+    width: 100%;
 }
 
 .content {

@@ -23,12 +23,6 @@
                             <div class="underline"></div>
                         </div>
                         <div class="vertical-align-wrapper underline-container menu-item-wrapper">
-                            <a href="{{url_for('register')}}" class="page-link vertical-align-outer">
-                                <span class="vertical-align-inner">Регистрация</span>
-                            </a>
-                            <div class="underline"></div>
-                        </div>
-                        <div class="vertical-align-wrapper underline-container menu-item-wrapper">
                             <a href="{{url_for('statistics')}}" class="page-link vertical-align-outer">
                                 <span class="vertical-align-inner">Статистика</span>
                             </a>
@@ -60,8 +54,13 @@
                             <div class="underline"></div>
                         </div>
                         <div class="vertical-align-wrapper underline-container">
-                            <a href="{{url_for('logout')}}" class="page-link vertical-align-outer">
-                                <span class="vertical-align-inner">Выйти</span>
+                            {% if current_user.is_authenticated %}
+                                {% set login_link = (url_for('logout'), 'Выйти: ' + current_user.username) %}
+                            {% else %}
+                                {% set login_link = (url_for('login'), 'Войти') %}
+                            {% endif %}
+                            <a href="{{login_link[0]}}" class="page-link vertical-align-outer">
+                                <span class="vertical-align-inner">{{login_link[1]}}</span>
                             </a>
                             <div class="underline"></div>
                         </div>
@@ -70,14 +69,39 @@
             </header>
             <div class="hg-page-inner content">
                 <main class="page">
-                    {% block content %}{% endblock %}
+                    <div class="page-content">
+                        {% block content %}{% endblock %}
+                    </div>
                 </main>
-                <aside id="side-menu" class="page"></aside>
+                <aside id="side-menu" class="page">
+                    <div class="page-content"></div>
+                </aside>
             </div>
         </div>
-        <footer>
-            SDFG <br> sdfgsdfg<br>
-        sdfasdf
+        <footer class="container">
+            <section class="flashed-messages-group container">
+                {% for cat, msg in get_flashed_messages(True) %}
+                    {% set message_classes = cat %}
+                    <div id="flashed-message-{{loop.index0}}" class="flashed-message-wrapper vertical-align-wrapper">
+                        <div class="flashed-message-pane content vertical-align-outer flash {{message_classes}}">
+                            <p class="vertical-align-inner">{{msg}}</p>
+                            <div class="btn-close-pane vertical-align-inner {{message_classes}}">(x)</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </section>
+            <section class="copyright content page">
+                <h3>Задача 23. «Гостиничный комплекс».</h3>
+                <p>
+                    Выполнил студент ФКН 3 курса, группы 5.2 <br><strong>Шакайло Александр</strong> <br><br>
+                </p>
+                <h3>Текст задачи:</h3>
+                <p>
+                    Сведения о клиентах, персонале. <br>
+                    Занятости и бронировании номеров. <br>
+                    Возможность рассмотрения групповой заявки. <br>
+                </p>
+            </section>
         </footer>
     </body>
 </html>

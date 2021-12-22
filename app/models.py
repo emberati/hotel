@@ -1,11 +1,12 @@
 from app import db
 from sqlalchemy import Column, ForeignKey, Index, Integer, String, Date, Boolean, Float
 from sqlalchemy import select
-from flask_login import UserMixin
+from flask_login import UserMixin, AnonymousUserMixin
 
 # TODO: Пересмотреть ассоциативные таблицы
 
 sess = db.session
+
 
 class Rent(db.Model):
     id              = Column(Integer, primary_key=True, nullable=False)
@@ -104,3 +105,7 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         from werkzeug.security import check_password_hash
         return check_password_hash(self.pass_hash, password)
+
+
+class AnonymousUser(AnonymousUserMixin):
+    username = 'Гость'
