@@ -3,5 +3,81 @@
 {% block head %} {% endblock %}
 
 {% block content %}
-
+<form action="" method="POST">
+    {{rent.hidden_tag()}}
+    {% for room in rent.rooms %}
+        {{room.hidden_tag()}}
+        <div class="row-content">
+            {{room.room_id(style="display: flex;")}}
+        </div>
+        <div class="row-content">
+            {{room.beg_of_period.label}}
+            <div class="str-input-wrapper underline-container">
+                {{room.beg_of_period(class="string-input", placeholder="YYYY-MM-DD")}}
+                <div class="underline"></div>
+            </div>
+        </div>
+        <div class="row-content">
+            {{room.end_of_period.label}}
+            <div class="str-input-wrapper underline-container">
+                {{room.end_of_period(class="string-input")}}
+                <div class="underline"></div>
+            </div>
+        </div>
+            {% for tenant in room.tenants %}
+            <section id="{{tenant.id}}" class="tenant-section">
+                {{tenant.hidden_tag()}}
+                <div class="row-content">
+                    {{tenant.full_name.label}}
+                    <div class="str-input-wrapper underline-container">
+                        {{tenant.full_name(class="string-input")}}
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <div class="row-content">
+                    {{tenant.doc_type.label}}
+                    <div class="str-input-wrapper underline-container">
+                        {{tenant.doc_type(class="string-input")}}
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <div class="row-content">
+                    {{tenant.doc_number.label}}
+                    <div class="str-input-wrapper underline-container">
+                        {{tenant.doc_number(class="string-input")}}
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <div class="row-content">
+                    {{tenant.date_of_birth.label}}
+                    <div class="str-input-wrapper underline-container">
+                        {{tenant.date_of_birth(class="string-input")}}
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <div class="row-content">
+                    {{tenant.phone.label}}
+                    <div class="str-input-wrapper underline-container">
+                        {{tenant.phone(class="string-input")}}
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <div class="row-content">
+                    {{tenant.email.label}}
+                    <div class="str-input-wrapper underline-container">
+                        {{tenant.email(class="string-input")}}
+                        <div class="underline"></div>
+                    </div>
+                </div>
+            </section>
+            {% endfor %}
+        <div class="row-content">
+            {{room.btn_add_tenant(class="btn-submit")}}
+        </div>
+    {% endfor %}
+    <div class="row-content">{{rent.btn_add_room(class="btn-submit")}}</div>
+    <div class="row-content"></div>
+    <div class="row-content"></div>
+    <div class="row-content"></div>
+</form>
 {% endblock %}

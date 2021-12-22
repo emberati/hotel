@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 from app.models import User, AnonymousUser
-from app.forms import RegisterUserForm, LoginUserForm
+from app.forms import RegisterUserForm, LoginUserForm, RentForm
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -20,7 +20,15 @@ def index():
 @app.route('/booking', methods=['GET', 'POST'])
 @login_required
 def booking():
-    return render_template('booking.html')
+    rent = RentForm()
+    if rent.update_on_submit(): pass
+    if rent.validate_on_submit():
+        pass
+    else:
+        flash('errors', category='warning')
+        for error in rent.errors:
+            print(error)
+    return render_template('booking.html', rent=rent)
 
 
 @app.route('/statistics')

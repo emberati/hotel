@@ -28,8 +28,8 @@ class RoomForm(FlaskForm):
     from app import db
     from app.models import Room
     tenants         = FieldList(FormField(TenantForm))
-    room_id         = RadioField('Номер комнаты', choices=[(i, 'pipa') for i in range(10)], validators=[input_required()])
-    beg_of_period   = DateField('Начало аренды')
+    room_id         = RadioField('Номер комнаты', choices=[i for i in range(10)], validators=[input_required()])
+    beg_of_period   = DateField('Начало аренды', validators=[input_required()])
     end_of_period   = DateField('Конец аренды', validators=[input_required()])
 
     btn_add_tenant = SubmitField('Добавить жильца')
@@ -45,7 +45,7 @@ class RoomForm(FlaskForm):
 
 
 class RentForm(FlaskForm):
-    rooms            = FieldList(FormField(RoomForm))
+    rooms           = FieldList(FormField(RoomForm))
     btn_add_room    = SubmitField('Добавить номер')
 
     def add_room(self):
