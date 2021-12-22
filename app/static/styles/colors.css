@@ -1,9 +1,8 @@
 :root {
-    --deep-black: #000000;
-    --gold-yellow: #FFBA33;
+    --black: #000000;
     --white: #FFFFFF;
 
-    --accent-foreground: #D0D7DE;
+    --accent-foreground: var(--grim-gray);
     --accent-background: #000000;
     --layout-foreground: #FFFFFF;
     --layout-background: #F6F8FA;
@@ -14,4 +13,11 @@
     --success-foreground: #79AEA3;
     --success-background: #70EE9C;
     --success-solid: #5C998D;
+
+    --oxford-blue: #14213D;
+    --deep-sea: #3D405B;
+    --gold-orange: #FCA311;
+    --gold-yellow: #FFBA33;
+    --platinum-gray: #E5E5E5;
+    --grim-gray: #D0D7DE;
 }

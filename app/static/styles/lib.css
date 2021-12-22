@@ -8,6 +8,7 @@
 
     font-size: 24px;
     border: 1px solid transparent;
+    border-radius: 10px 10px 0 0;
     background-color: var(--layout-background);
     transition: border-color .3s ease-in-out;
 }
@@ -26,6 +27,11 @@
     transition: background-color: .3s ease-in-out;
 }
 */
+
+.str-input-wrapper {
+    overflow: hidden;
+    border-radius: 10px;
+}
 
 .str-input-wrapper > .string-input:focus + .underline::after {
     width: 100%;

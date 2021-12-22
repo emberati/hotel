@@ -41,7 +41,7 @@ def login():
             user.authenticated = user.check_password(password)
             if user.is_authenticated:
                 login_user(user, remember=remember)
-                redirect(url_for(next) if next else url_for('booking'))
+                redirect(next if next else url_for('booking'))
                 flash('Вы успешно вошли!', category='message')
             else:
                 flash('Неверный пароль!',  category='warning')
@@ -64,7 +64,6 @@ def logout():
 def register():
     form = RegisterUserForm()
     sess = db.session
-
     if form.validate_on_submit():
         username = form.user.username.data
         password = form.user.password.data

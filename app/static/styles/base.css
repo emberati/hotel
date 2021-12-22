@@ -6,7 +6,7 @@
 
 /*    TEXT    */
 
-h1, h2, h3, p, span, a, strong, input, label {
+footer, h1, h2, h3, p, span, a, strong, input, label {
     font-family: 'Montserrat';
     font-weight: 400;
     font-size: 16px;
@@ -54,8 +54,10 @@ main.page {
     /* margin-right: auto; */
     position: relative;
     width: 100%;
+    border-left: 1px solid var(--grim-gray);
+    border-right: 1px solid var(--grim-gray);
     background-color: var(--white);
-    box-shadow: 0 0 50px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 50px 1px rgba(20, 20, 20, 0.01);
 }
 
 aside.page {
@@ -63,7 +65,8 @@ aside.page {
     flex: 0 0 400px;
     position: relative;
     min-width: 400px;
-    background-color: var(--white);
+    border-right: 1px solid var(--grim-gray);
+    background-color: var(--platinum-gray);
     transition: min-width .3s ease-in-out, flex-basis .3s ease-in-out;
 }
 
@@ -76,7 +79,16 @@ header {
     z-index: 2;
     position: relative;
     height: 50px;
-    background-color: var(--deep-black);
+    background-color: var(--oxford-blue);
+}
+
+body {
+    background-color: white;
+}
+
+footer {
+    color: var(--platinum-gray);
+    background-color: var(--deep-sea);
 }
 
 .nav-wrapper {
@@ -89,6 +101,7 @@ nav.menu-items {
     display: flex;
     height: 100%;
     cursor: pointer;
+    user-select: none;
     justify-content: space-between;
 }
 
@@ -103,7 +116,7 @@ nav#options > *:first-child {
 .menu-items .page-link:hover ~ .underline::after,
 .menu-items .page-link:focus ~ .underline::after {
     width: 100%;
-    background-color: var(--gold-yellow);
+    background-color: var(--gold-orange);
 }
 
 .page-link {
@@ -117,6 +130,7 @@ nav#options > *:first-child {
     margin-right: auto;
 }
 
+/*
 .hg-page-wrapper {
     content: "";
     position: absolute;
@@ -124,3 +138,4 @@ nav#options > *:first-child {
     height: 100%;
     background: url('../resources/images/room-0.jpg');
 }
+*/
