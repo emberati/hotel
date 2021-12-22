@@ -47,7 +47,7 @@ def create_tenants(count: int):
     from sqlalchemy.exc import SQLAlchemyError
 
     sess = db.session
-    stmt = select(User).where(User.id == 2)
+    stmt = select(User).where(User.id == 1)
     user = sess.execute(stmt).scalars().first()
 
     doc_nations = {
@@ -117,7 +117,7 @@ def create_tenants(count: int):
         email           = None
 
         try:
-            if randint(1, 101) == 1:
+            if randint(1, 101) == 1 or not user:
                 user = User(username='user'+doc_number[:2:], pass_hash=doc_number)
                 sess.add(user)
 
