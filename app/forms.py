@@ -47,6 +47,7 @@ class RoomForm(FlaskForm):
 class RentForm(FlaskForm):
     rooms           = FieldList(FormField(RoomForm))
     btn_add_room    = SubmitField('Добавить номер')
+    btn_submit      = SubmitField('Забронировать')
 
     def add_room(self):
         self.rooms.append_entry()

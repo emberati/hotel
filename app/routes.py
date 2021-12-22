@@ -23,7 +23,8 @@ def booking():
     rent = RentForm()
     if rent.update_on_submit(): pass
     if rent.validate_on_submit():
-        pass
+        flash('Бронирование прошло успешно!', category='message')
+        return redirect('index')
     else:
         flash('errors', category='warning')
         print(rent.errors)
