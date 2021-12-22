@@ -26,8 +26,11 @@ def booking():
         pass
     else:
         flash('errors', category='warning')
-        for error in rent.errors:
-            print(error)
+        print(rent.errors)
+        # for room in rent.rooms:
+        #     print(room.errors)
+        #     for tenant in room.tenants:
+        #         print(tenant.errors)
     return render_template('booking.html', rent=rent)
 
 

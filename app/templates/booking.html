@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{url_for('static', filename='styles/booking.css')}}">{% endblock %}
 
 {% block content %}
-<form action="" method="POST">
+<form id="rent" action="" method="POST">
     {{rent.hidden_tag()}}
     {% for room in rent.rooms %}
         {{room.hidden_tag()}}
@@ -38,56 +38,53 @@
 {% endblock %}
 
 {% block side %}
-<form action="" method="POST">
     {% for room in rent.rooms %}
-{% for tenant in room.tenants %}
+        {% for tenant in room.tenants %}
+            {{tenant.csrf_token(form="rent")}}
             <section id="{{tenant.id}}" class="tenant-section">
-                {{tenant.hidden_tag()}}
                 <div class="row-content">
                     {{tenant.full_name.label}}
                     <div class="str-input-wrapper underline-container">
-                        {{tenant.full_name(class="string-input")}}
+                        {{tenant.full_name(class="string-input", form="rent")}}
                         <div class="underline"></div>
                     </div>
                 </div>
                 <div class="row-content">
                     {{tenant.doc_type.label}}
                     <div class="str-input-wrapper underline-container">
-                        {{tenant.doc_type(class="string-input")}}
+                        {{tenant.doc_type(class="string-input", form="rent")}}
                         <div class="underline"></div>
                     </div>
                 </div>
                 <div class="row-content">
                     {{tenant.doc_number.label}}
                     <div class="str-input-wrapper underline-container">
-                        {{tenant.doc_number(class="string-input")}}
+                        {{tenant.doc_number(class="string-input", form="rent")}}
                         <div class="underline"></div>
                     </div>
                 </div>
                 <div class="row-content">
                     {{tenant.date_of_birth.label}}
                     <div class="str-input-wrapper underline-container">
-                        {{tenant.date_of_birth(class="string-input")}}
+                        {{tenant.date_of_birth(class="string-input", form="rent")}}
                         <div class="underline"></div>
                     </div>
                 </div>
                 <div class="row-content">
                     {{tenant.phone.label}}
                     <div class="str-input-wrapper underline-container">
-                        {{tenant.phone(class="string-input")}}
+                        {{tenant.phone(class="string-input", form="rent")}}
                         <div class="underline"></div>
                     </div>
                 </div>
                 <div class="row-content">
                     {{tenant.email.label}}
                     <div class="str-input-wrapper underline-container">
-                        {{tenant.email(class="string-input")}}
+                        {{tenant.email(class="string-input", form="rent")}}
                         <div class="underline"></div>
                     </div>
                 </div>
             </section>
-            {% endfor %}
-{% endfor %}
-
-</form>
+        {% endfor %}
+    {% endfor %}
 {% endblock %}
