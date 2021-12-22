@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{% block head %} {% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='styles/booking.css')}}">{% endblock %}
 
 {% block content %}
 <form action="" method="POST">
@@ -24,7 +25,22 @@
                 <div class="underline"></div>
             </div>
         </div>
-            {% for tenant in room.tenants %}
+
+        <div class="row-content">
+            {{room.btn_add_tenant(class="btn-submit")}}
+        </div>
+    {% endfor %}
+    <div class="row-content">{{rent.btn_add_room(class="btn-submit")}}</div>
+    <div class="row-content"></div>
+    <div class="row-content"></div>
+    <div class="row-content"></div>
+</form>
+{% endblock %}
+
+{% block side %}
+<form action="" method="POST">
+    {% for room in rent.rooms %}
+{% for tenant in room.tenants %}
             <section id="{{tenant.id}}" class="tenant-section">
                 {{tenant.hidden_tag()}}
                 <div class="row-content">
@@ -71,13 +87,7 @@
                 </div>
             </section>
             {% endfor %}
-        <div class="row-content">
-            {{room.btn_add_tenant(class="btn-submit")}}
-        </div>
-    {% endfor %}
-    <div class="row-content">{{rent.btn_add_room(class="btn-submit")}}</div>
-    <div class="row-content"></div>
-    <div class="row-content"></div>
-    <div class="row-content"></div>
+{% endfor %}
+
 </form>
 {% endblock %}
