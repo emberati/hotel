@@ -14,6 +14,7 @@ class UserForm(FlaskForm):
 
 
 class TenantForm(FlaskForm):
+    room_id         = SelectField('Номер комнаты', choices=[], validators=[input_required()])
     full_name       = StringField('Фамилия, Имя, Отчество', validators=[input_required(), length(min=3, max=16)])
     doc_type        = SelectField('Тип документа', choices=[
         'Паспорт Российской Федерации', 'United States Passport', 'Пасспорт України'
@@ -23,42 +24,42 @@ class TenantForm(FlaskForm):
     phone           = TelField('Номер телефона', validators=[optional()])
     email           = EmailField('Номер телефона', validators=[optional(), email()])
 
+    def add_room_id(self, room_id):
+        self.room_id.choices.append(room_id)
+
 
 class RoomForm(FlaskForm):
     from app import db
     from app.models import Room
-    tenants         = FieldList(FormField(TenantForm))
     room_id         = RadioField('Номер комнаты', choices=[i for i in range(10)], validators=[input_required()])
     beg_of_period   = DateField('Начало аренды', validators=[input_required()])
     end_of_period   = DateField('Конец аренды', validators=[input_required()])
 
-    btn_add_tenant = SubmitField('Добавить жильца')
-
-    def add_tenant(self):
-        self.tenants.append_entry()
-
-    def update_on_submit(self):
-        if self.btn_add_tenant.data:
-            self.add_tenant()
-            return self.btn_add_tenant
-        else: return False
-
 
 class RentForm(FlaskForm):
     rooms           = FieldList(FormField(RoomForm))
+    tenants         = FieldList(FormField(TenantForm))
+
     btn_add_room    = SubmitField('Добавить номер')
+    btn_add_tenant = SubmitField('Добавить жильца')
+
     btn_submit      = SubmitField('Забронировать')
 
     def add_room(self):
         self.rooms.append_entry()
 
+    def add_tenant(self):
+        self.tenants.append_entry()
+
     def update_on_submit(self):
+
         if self.btn_add_room.data:
             self.add_room()
             return self.btn_add_room
-        else:
-            for room in self.rooms:
-                return room.update_on_submit()
+        elif self.btn_add_tenant.data:
+            self.add_tenant()
+            return self.btn_add_tenant
+        else: return False
 
 
 class RegisterUserForm(FlaskForm):

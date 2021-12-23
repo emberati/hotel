@@ -22,6 +22,12 @@ def index():
 def booking():
     rent = RentForm()
     if rent.update_on_submit(): pass
+    
+        # реализовать на javascript
+        # for tenant in rent.tenants:
+        #     for room in rent.rooms:
+        #         room_id = room.room_id.data
+        #         tenant.add_room_id(room_id)
     if rent.validate_on_submit():
         flash('Бронирование прошло успешно!', category='message')
         return redirect('index')
