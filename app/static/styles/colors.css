@@ -30,14 +30,6 @@
 
 /*    COLOR DEFINING    */
 :root {
-/*
-    --warning-foreground: var(--sienna-red);
-    --warning-background: var(--red-send-orange);
-
-    --success-foreground: var(--pine-green);
-    --success-background: var(--persian-green);
-*/
-
     --warning-contour: var(--ashberry-red);
     --warning-layer: var(--orange-orange);
     --success-contour: var(--persian-green);

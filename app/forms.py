@@ -31,7 +31,7 @@ class TenantForm(FlaskForm):
 class RoomForm(FlaskForm):
     from app import db
     from app.models import Room
-    room_id         = RadioField('Номер комнаты', choices=[i for i in range(10)], validators=[input_required()])
+    room_id         = RadioField('Номер комнаты', choices=[], validators=[input_required()])
     beg_of_period   = DateField('Начало аренды', validators=[input_required()])
     end_of_period   = DateField('Конец аренды', validators=[input_required()])
 

@@ -20,15 +20,23 @@ def index():
 @app.route('/booking', methods=['GET', 'POST'])
 @login_required
 def booking():
+    from app.data import get_rent_data
     rent = RentForm()
-    if rent.update_on_submit(): pass
-    
-        # реализовать на javascript
-        # for tenant in rent.tenants:
-        #     for room in rent.rooms:
-        #         room_id = room.room_id.data
-        #         tenant.add_room_id(room_id)
+    rent_dto = get_rent_data()
+
+    print(rent_dto.selected_room_ids)
+    print(rent_dto.available_room_ids)
+    if rent.update_on_submit():
+        for room in rent.rooms:
+            # Заполнение списка доступных комнат
+            room.room_id.choices = rent_dto.available_room_ids
+            # Заполнение выбранных комнат у жильцов
+            room_id = room.room_id.data
     if rent.validate_on_submit():
+        # Проверка, доступна ли выбранная комната
+        for tenant in rent.tenants:
+            if not (tenant.room_id.data in rent_dto.available_room_ids):
+                flash('Данные аппартаменты не доступны для аренды!', category='warning')
         flash('Бронирование прошло успешно!', category='message')
         return redirect('index')
     else:
@@ -38,12 +46,13 @@ def booking():
         #     print(room.errors)
         #     for tenant in room.tenants:
         #         print(tenant.errors)
-    return render_template('booking.html', rent=rent)
+    return render_template('booking.html', rent=rent, rent_dto=rent_dto)
 
 
 @app.route('/statistics')
 def statistics():
     return render_template('statistics.html')
+
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -62,7 +71,7 @@ def login():
                 flash(f'Вы успешно вошли! Аккаунт: {username}', category='message')
                 return redirect(next if next else url_for('index'))
             else:
-                flash('Неверный пароль!',  category='warning')
+                flash('Неверный пароль!', category='warning')
         else:
             flash(f'Пользователя {username} не существует!', category='warning')  # TODO: categories
         print('Form has been validated...')

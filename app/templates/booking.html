@@ -9,12 +9,12 @@
         {% for room in rent.rooms %}
             {{room.hidden_tag()}}
             <div class="row-content">
-                {{room.room_id(style="display: flex;")}}
+                {{room.room_id(class="rent-room-choice")}}
             </div>
             <div class="row-content">
                 {{room.beg_of_period.label}}
                 <div class="str-input-wrapper underline-container">
-                    {{room.beg_of_period(class="string-input", placeholder="YYYY-MM-DD")}}
+                    {{room.beg_of_period(class="string-input")}}
                     <div class="underline"></div>
                 </div>
             </div>
@@ -93,24 +93,64 @@
         {{rent.btn_add_tenant(class="btn-submit", form="rent")}}
     </div>
     <script>
-        function createRoomIdOption(roomId) {
+        var rentRoomIdChoices = document.getElementsByClassName("rent-room-choice");
+        var availableRoomIdTenantOptions = document.getElementsByClassName("tenant-room-select");
+
+        function createRoomSelectOption(roomId) {
             let option = document.createElement("option");
             option.text = roomId;
             option.value = roomId;
             return option;
         }
 
-        function updateAvailableRoomIds(roomIds) {
-            let tenantRoomIdSelect = document.getElementsByClassName("tenant-room-select");
-            console.log(tenantRoomIdSelect.length);
-            for (i = 0; i < tenantRoomIdSelect.length; i++) {
+        function clearRoomSelectOptions() {
+            for (i = 0; i < availableRoomIdTenantOptions.length; i++) {
+                availableRoomIdTenantOptions[i].innerHTML = '';
+            }
+        }
+        
+        function setRoomSelectOptions(roomIds) {
+            for (i = 0; i < availableRoomIdTenantOptions.length; i++) {
                 for (j = 0; j < roomIds.length; j++) {
-                    tenantRoomIdSelect[i].appendChild(createRoomIdOption(roomIds[j]));
-                    console.log('updated!');
+                    availableRoomIdTenantOptions[i].appendChild(createRoomSelectOption(roomIds[j]));
                 }
             }
         }
 
-        document.onload = updateAvailableRoomIds([1,2,3,4,5]);
+        function updateRoomSelectOptions() {
+            clearRoomSelectOptions();
+            setRoomSelectOptions(getCheckedRoomChoices());
+        }
+
+        function getCheckedRoomChoices() {
+            let roomIds = [];
+            for (let i = 0; i < rentRoomIdChoices.length; i++) {
+                let optionList = rentRoomIdChoices[i].childNodes;
+                for (let j = 0; j < optionList.length; j++) {
+                    let choice = optionList[j].children[0];
+                    if (choice.checked == true && roomIds.indexOf(choice.value) == -1) {
+                        roomIds.push(choice.value);
+                    }
+                }
+            }
+            return roomIds;
+        }
+
+        function setRoomChoicesOnclick() {
+            for (let i = 0; i < rentRoomIdChoices.length; i++) {
+                let optionList = rentRoomIdChoices[i].childNodes;
+                for (let j = 0; j < optionList.length; j++) {
+                    let choice = optionList[j].children[0];
+                    choice.onclick = function() {updateRoomSelectOptions()}
+                }
+            }
+        }
+
+        function reloadData() {
+            setRoomChoicesOnclick();
+            /* setRoomSelectOptions(); */
+        }
+
+        document.onload = reloadData();
     </script>
 {% endblock %}
