@@ -38,16 +38,14 @@ def booking():
     if rent.validate_on_submit():
         rents_db = []
         sess = db.session
-        for room in rent.rooms:
-            print('ROOM')
-            rent_db = Rent(
+        for tenant in rent.tenants:
+            for room in rent.rooms:
+                print('ROOM')
+                rent_db = Rent(
                     room_id=room.room_id.data,
                     beg_of_period=room.beg_of_period.data,
                     end_of_period=room.end_of_period.data,
                 )
-
-            for tenant in rent.tenants:
-
                 # Проверка, доступна ли выбранная комната
                 # if not (tenant.room_id.data in rent_dto.available_room_ids):
                 #     flash('Данные аппартаменты не доступны для аренды!', category='warning')
@@ -63,13 +61,13 @@ def booking():
                         email=tenant.email.data if tenant.email.data else None,
                     )
                     rent_db.tenant = tenant_db
-                    try:
-                        sess.add(rent_db)
-                        sess.commit()
-                        print('ADDED TO DATA BASE!')
-                    except SQLAlchemyError as e:
-                        print(e)
-                        sess.rollback()
+                try:
+                    sess.add(rent_db)
+                    sess.commit()
+                    print('ADDED TO DATA BASE!')
+                except SQLAlchemyError as e:
+                    print(e)
+                    sess.rollback()
 
         flash('Бронирование прошло успешно!', category='message')
         return redirect('index')
