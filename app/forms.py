@@ -14,8 +14,8 @@ class UserForm(FlaskForm):
 
 
 class TenantForm(FlaskForm):
-    room_id         = SelectField('Номер комнаты', choices=[], validators=[input_required()])
-    full_name       = StringField('Фамилия, Имя, Отчество', validators=[input_required(), length(min=3, max=16)])
+    room_id         = SelectField('Номер комнаты', choices=[1,2,3], validators=[input_required()])
+    full_name       = StringField('Фамилия, Имя, Отчество', validators=[input_required(), length(min=3, max=64)])
     doc_type        = SelectField('Тип документа', choices=[
         'Паспорт Российской Федерации', 'United States Passport', 'Пасспорт України'
     ])
