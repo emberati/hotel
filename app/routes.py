@@ -31,7 +31,7 @@ def booking():
             # Заполнение списка доступных комнат
             room.room_id.choices = rent_dto.available_room_ids
             # Заполнение выбранных комнат у жильцов
-            room_id = room.room_id.data
+            # room_id = room.room_id.data
     if rent.validate_on_submit():
         # Проверка, доступна ли выбранная комната
         for tenant in rent.tenants:

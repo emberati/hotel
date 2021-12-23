@@ -6,6 +6,22 @@
 {% block content %}
     <form id="rent" action="" method="POST">
         {{rent.hidden_tag()}}
+
+        {% for room_dto in rent_dto.available_rooms %}
+            <section id="room-{{room_dto.id}}-description" class="room-description hidden">
+                <div class="text-room-description">
+                    <h3 class="row-content">Номер комнаты: {{room_dto.id}}</h3>
+                    <h3 class="row-content">Цена (за сутки): {{room_dto.cost}} рублей</h3>
+                    <h3 class="row-content">Двуместных кроватей: {% if room_dto.double_beds %} {{room_dto.double_beds}} {% else %} нет {% endif %}</h3>
+                    <h3 class="row-content">Одиноместных кроватей:  {% if room_dto.single_beds %} {{room_dto.single_beds}} {% else %} нет {% endif %}</h3>
+                    <h3 class="row-content">Душевых: {% if room_dto.showers %} {{room_dto.showers}} {% else %} нет {% endif %}</h3>
+                    <h3 class="row-content">Уборных: {% if room_dto.toilets %} {{room_dto.toilets}} {% else %} нет {% endif %}</h3>
+                </div>
+                <div class="image-room-description row-content">
+                    <p>Нет изображения</p>
+                </div>
+            </section>
+        {% endfor %}
         {% for room in rent.rooms %}
             {{room.hidden_tag()}}
             <div class="row-content">
@@ -141,9 +157,26 @@
                 let optionList = rentRoomIdChoices[i].childNodes;
                 for (let j = 0; j < optionList.length; j++) {
                     let choice = optionList[j].children[0];
-                    choice.onclick = function() {updateRoomSelectOptions()}
+                    choice.onclick = function() {
+                        updateRoomSelectOptions();
+                        toggleRoomDescription(choice.value);
+                    }
                 }
             }
+        }
+
+        var roomDescriptions = document.getElementsByClassName("room-description");
+
+        function hideRoomDescriptions() {
+            for (let i = 0; i < roomDescriptions.length; i++) {
+                roomDescriptions[i].classList.add("hidden");
+            }
+        }
+
+        function toggleRoomDescription(roomId) {
+            let description = document.getElementById('room-' + roomId + '-description');
+            hideRoomDescriptions();
+            description.classList.toggle("hidden");
         }
 
         function reloadData() {
