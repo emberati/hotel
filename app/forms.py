@@ -14,7 +14,7 @@ class UserForm(FlaskForm):
 
 
 class TenantForm(FlaskForm):
-    room_id         = SelectField('Номер комнаты', choices=[1,2,3], validators=[input_required()])
+    room_id         = SelectField('Номер комнаты', validate_choice=False, choices=[], validators=[input_required()])
     full_name       = StringField('Фамилия, Имя, Отчество', validators=[input_required(), length(min=3, max=64)])
     doc_type        = SelectField('Тип документа', choices=[
         'Паспорт Российской Федерации', 'United States Passport', 'Пасспорт України'
@@ -31,7 +31,7 @@ class TenantForm(FlaskForm):
 class RoomForm(FlaskForm):
     from app import db
     from app.models import Room
-    room_id         = RadioField('Номер комнаты', choices=[], validators=[input_required()])
+    room_id         = RadioField('Номер комнаты', validate_choice=False, choices=[], validators=[input_required()])
     beg_of_period   = DateField('Начало аренды', validators=[input_required()])
     end_of_period   = DateField('Конец аренды', validators=[input_required()])
 

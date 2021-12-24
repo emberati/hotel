@@ -48,7 +48,7 @@ def create_tenants(count: int):
     user = sess.execute(stmt).scalars().first()
 
     doc_nations = {
-        'ru': 'Паспорт Росиийской федерации',
+        'ru': 'Паспорт Российской федерации',
         'ua': 'Пасспорт України',
         'us': 'United States Passport'
     }

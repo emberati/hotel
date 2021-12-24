@@ -4,7 +4,7 @@ from app import app, db
 from flask import render_template, redirect, url_for, flash, request, session
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
-from app.data import TenantsListData
+from app.data import TenantsListData, TenantsStatisticData
 from app.models import User, AnonymousUser, Rent, Tenant
 from app.forms import RegisterUserForm, LoginUserForm, RentForm
 
@@ -16,7 +16,7 @@ login_manager.anonymous_user = AnonymousUser
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-    tenants_list_dto = TenantsListData.get_tenants_list_data(current_user)
+    tenants_list_dto = TenantsListData.create(current_user)
     flash('Тестовое плавающее сообщение', category='message')
     return render_template('index.html', current_user=current_user, tenants_list_dto=tenants_list_dto)
 
@@ -28,15 +28,14 @@ def booking():
     rent = RentForm()
     rent_dto = get_rent_data()
 
-    print(rent_dto.selected_room_ids)
-    print(rent_dto.available_room_ids)
-    for room in rent.rooms:
-        # Заполнение списка доступных комнат
-        room.room_id.choices = rent_dto.available_room_ids
-        # Заполнение выбранных комнат у жильцов
-        # room_id = room.room_id.data
     if rent.update_on_submit():
-        pass
+        for room in rent.rooms:
+            print(rent_dto.selected_room_ids)
+            print(rent_dto.available_room_ids)
+            # Заполнение списка доступных комнат
+            room.room_id.choices = rent_dto.available_room_ids
+            # Заполнение выбранных комнат у жильцов
+            # room_id = room.room_id.data
     elif rent.validate_on_submit():
         sess = db.session
         for tenant in rent.tenants:
@@ -90,8 +89,9 @@ def booking():
 
 @app.route('/statistics')
 def statistics():
-    tenants_list_dto = TenantsListData.get_tenants_list_data(current_user)
-    return render_template('statistics.html', tenants_list_dto=tenants_list_dto)
+    tenants_list_dto = TenantsListData.create(current_user)
+    tenants_statistic_dto = TenantsStatisticData.create()
+    return render_template('statistics.html', tenants_list_dto=tenants_list_dto, tenants_statistic_dto=tenants_statistic_dto)
 
 
 @app.route('/login', methods=['POST', 'GET'])

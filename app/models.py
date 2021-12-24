@@ -109,3 +109,4 @@ class User(db.Model, UserMixin):
 
 class AnonymousUser(AnonymousUserMixin):
     username = 'Гость'
+    tenants = []

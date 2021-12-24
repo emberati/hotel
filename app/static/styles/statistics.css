@@ -1,0 +1,38 @@
+.stat-row {
+    position: relative;
+    overflow: hidden;
+
+    height: 10px;
+    width: 100%;
+
+    border-radius: 15px;
+}
+
+.stat-title {
+    display: block;
+}
+
+.stat-row-foreground {
+    position: relative;
+
+    height: 10px;
+
+    border-radius: 15px;
+    background-color: var(--stat-row-foreground);
+    transition: 1s ease-in-out;
+}
+
+.stat-row-background {
+    position: absolute;
+
+    width: 100%;
+    height: 10px;
+
+    border-radius: 15px;
+    background-color: var(--stat-row-background);
+}
+
+:root {
+    --stat-row-foreground: var(--persian-green);
+    --stat-row-background: var(--pine-green);
+}

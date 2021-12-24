@@ -1,8 +1,118 @@
 {% extends 'base.html' %}
 
-{% block head %} {% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='styles/statistics.css')}}">
+{% endblock %}
 
 {% block content %}
+<script type="text/javascript">
+    function setRowValue(id, value) {
+        console.log(id, value);
+        var row = document.getElementById(id);
+        row.style.width = value + '%';
+    }
+
+    rows = [];
+    vals = [];
+    window.onload = function() {
+        for (let i = 0; i < rows.length; i++) {
+            setRowValue(rows[i], vals[i]);
+        }
+    }
+</script>
+<div class="content-block">
+    <h1>Статистика по постояльцам</h1>
+        <section class="tenants-nation">
+            <h2>Статистика постояльцев по гражданству:</h2>
+            <div class="row-content">
+                <span class="stat-title row-content">Всего постояльцев: <strong>{{tenants_statistic_dto.count}}</strong></span>
+                <span class="stat-title row-content">Среди них граждан Российской Федерации: <strong>{{tenants_statistic_dto.ru_tenants_count}} ({{tenants_statistic_dto.ru_tenants_percentage}}%)</strong></span>
+                <div class="stat-row row-content">
+                    <div class="stat-row-background"></div>
+                    <div id="ru_tenants_percentage" class="stat-row-foreground" style="width:2%;"></div>
+                    <script>
+                        rows.push("ru_tenants_percentage");
+                        vals.push({{tenants_statistic_dto.ru_tenants_percentage}});
+                    </script>
+                </div>
+                <span class="stat-title row-content">Среди них граждан Соединённых Штатов Америки: <strong>{{tenants_statistic_dto.us_tenants_count}} ({{tenants_statistic_dto.us_tenants_percentage}}%)</strong></span>
+                <div class="stat-row row-content">
+                    <div class="stat-row-background"></div>
+                    <div id="us_tenants_percentage" class="stat-row-foreground" style="width:2%;"></div>
+                    <script>
+                        rows.push("us_tenants_percentage");
+                        vals.push({{tenants_statistic_dto.us_tenants_percentage}});
+                    </script>
+                </div>
+                <span class="stat-title row-content">Среди них граждан Украины: <strong>{{tenants_statistic_dto.ua_tenants_count}} ({{tenants_statistic_dto.ua_tenants_percentage}}%)</strong></span>
+                <div class="stat-row row-content">
+                    <div class="stat-row-background"></div>
+                    <div id="ua_tenants_percentage" class="stat-row-foreground" style="width:2%;"></div>
+                    <script>
+                        rows.push("ua_tenants_percentage");
+                        vals.push({{tenants_statistic_dto.ua_tenants_percentage}});
+                    </script>
+                </div>
+            </div>
+        </section>
+        <section class="tenants-age">
+            <h2>Постояльцы по возростам:</h2>
+            <span class="stat-title row-content">Стреди них 13-ти лет и младше: <strong>{{tenants_statistic_dto.age_0_13_count}} ({{tenants_statistic_dto.age_0_13_percentage}}%)</strong></span>
+            <div class="stat-row row-content">
+                <div class="stat-row-background"></div>
+                <div id="tenants_statistic_dto-age-0-13-percentage" class="stat-row-foreground" style="width:2%;"></div>
+                <script>
+                    rows.push("tenants_statistic_dto-age-0-13-percentage");
+                    vals.push({{tenants_statistic_dto.age_0_13_percentage}});
+                </script>
+            </div>
+            <span class="stat-title row-content">Стреди них от 14-ти лет до 20-ти: <strong>{{tenants_statistic_dto.age_14_20_count}} ({{tenants_statistic_dto.age_14_20_percentage}}%)</strong></span>
+            <div class="stat-row row-content">
+                <div class="stat-row-background"></div>
+                <div id="tenants_statistic_dto-age-14-20-percentage" class="stat-row-foreground" style="width:2%;"></div>
+                <script>
+                    rows.push("tenants_statistic_dto-age-14-20-percentage");
+                    vals.push({{tenants_statistic_dto.age_14_20_percentage}});
+                </script>
+            </div>
+            <span class="stat-title row-content">Стреди них от 21-го года до 35-ти: <strong>{{tenants_statistic_dto.age_21_35_count}} ({{tenants_statistic_dto.age_21_35_percentage}}%)</strong></span>
+            <div class="stat-row row-content">
+                <div class="stat-row-background"></div>
+                <div id="tenants_statistic_dto-age-21-35-percentage" class="stat-row-foreground" style="width:2%;"></div>
+                <script>
+                    rows.push("tenants_statistic_dto-age-21-35-percentage");
+                    vals.push({{tenants_statistic_dto.age_21_35_percentage}});
+                </script>
+            </div>
+            <span class="stat-title row-content">Стреди них от 36-ти лет до 50-ти: <strong>{{tenants_statistic_dto.age_36_50_count}} ({{tenants_statistic_dto.age_36_50_percentage}}%)</strong></span>
+            <div class="stat-row row-content">
+                <div class="stat-row-background"></div>
+                <div id="tenants_statistic_dto-age-36-50-percentage" class="stat-row-foreground" style="width:2%;"></div>
+                <script>
+                    rows.push("tenants_statistic_dto-age-36-50-percentage");
+                    vals.push({{tenants_statistic_dto.age_36_50_percentage}});
+                </script>
+            </div>
+            <span class="stat-title row-content">Стреди них от 51-го года до 70-ти: <strong>{{tenants_statistic_dto.age_51_70_count}} ({{tenants_statistic_dto.age_51_70_percentage}}%)</strong></span>
+            <div class="stat-row row-content">
+                <div class="stat-row-background"></div>
+                <div id="tenants_statistic_dto-age-51-70-percentage" class="stat-row-foreground" style="width:2%;"></div>
+                <script>
+                    rows.push("tenants_statistic_dto-age-51-70-percentage");
+                    vals.push({{tenants_statistic_dto.age_51_70_percentage}});
+                </script>
+            </div>
+            <span class="stat-title row-content">Стреди них старше 71-го: <strong>{{tenants_statistic_dto.age_71_99_count}} ({{tenants_statistic_dto.age_71_99_percentage}}%)</strong></span>
+            <div class="stat-row row-content">
+                <div class="stat-row-background"></div>
+                <div id="tenants_statistic_dto-age-71-99-percentage" class="stat-row-foreground" style="width:2%;"></div>
+                <script>
+                    rows.push("tenants_statistic_dto-age-71-99-percentage");
+                    vals.push({{tenants_statistic_dto.age_71_99_percentage}});
+                </script>
+            </div>
+        </section>
+</div>
 
 {% endblock %}
 
