@@ -168,3 +168,12 @@ input[type="submit"] {
     border-radius: 20px;
     background-color: var(--success-background);
 }
+
+.lined-list {
+
+}
+
+.lined-list li {
+    padding: 10px;
+    border-bottom: 1px solid var(--grim-gray);
+} .lined-list li:last-child {border-bottom: none;}

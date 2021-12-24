@@ -4,6 +4,7 @@ from app import app, db
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
+from app.data import TenantsListData
 from app.models import User, AnonymousUser, Rent, Tenant
 from app.forms import RegisterUserForm, LoginUserForm, RentForm
 
@@ -15,8 +16,9 @@ login_manager.anonymous_user = AnonymousUser
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
+    tenants_list_dto = TenantsListData.get_tenants_list_data(current_user)
     flash('Тестовое плавающее сообщение', category='message')
-    return render_template('index.html', current_user=current_user)
+    return render_template('index.html', current_user=current_user, tenants_list_dto=tenants_list_dto)
 
 
 @app.route('/booking', methods=['GET', 'POST'])

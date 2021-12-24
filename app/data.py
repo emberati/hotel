@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from datetime import date
 from decimal import Decimal
 from typing import List
 from app.models import *
@@ -8,6 +9,31 @@ from sqlalchemy import select
 def dec(val):
     return Decimal(str(val))
 
+
+@dataclass
+class TenantInfoData:
+    room_id: int = None
+    full_name: str = None
+    date_of_birth: date = None
+
+
+@dataclass
+class TenantsListData:
+    tenants: List[TenantInfoData] = field(default_factory=list)
+
+    @classmethod
+    def get_tenants_list_data(cls, user):
+        tenants_db = user.tenants
+
+        tenants_list_dto = TenantsListData()
+        for tenant_db in tenants_db:
+            tenants_list_dto.tenants.append(
+                TenantInfoData(
+                    full_name=tenant_db.full_name,
+                    date_of_birth=tenant_db.date_of_birth
+                )
+            )
+        return tenants_list_dto
 
 @dataclass
 class RoomData:

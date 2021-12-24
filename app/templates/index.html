@@ -5,3 +5,16 @@
 {% block content %}
 
 {% endblock %}
+
+{% block side %}
+    <nav id="tenant-list">
+        <ul class="lined-list">
+            {% for tenant_info_dto in tenants_list_dto.tenants %}
+            <li>
+                <strong>{{tenant_info_dto.full_name}}</strong>
+                <span>{{tenant_info_dto.date_of_birth}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}
