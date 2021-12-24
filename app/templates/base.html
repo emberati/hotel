@@ -31,23 +31,6 @@
                     </nav>
                     <nav id="options" class="menu-items">
                         <div class="vertical-align-wrapper underline-container">
-                            <script type="text/javascript">
-                                function hide(elementId) {
-                                    let el = document.getElementById(elementId);
-                                    let display = el.style.display;
-                                    if (display == "none") {
-                                        el.style.width = "initial";
-                                    } else {
-                                        el.style.width = "none";
-                                    }
-                                    console.log(display)
-                                }
-
-                                function foldWidth(elementId) {
-                                    let el = document.getElementById(elementId);
-                                    el.classList.toggle('folded-width')
-                                }
-                            </script>
                             <div onclick="foldWidth('side-menu')" class="page-link vertical-align-outer">
                                 <span class="vertical-align-inner">Жильцы</span>
                             </div>
@@ -105,5 +88,31 @@
                 </p>
             </section>
         </footer>
+        <script type="text/javascript">
+            function hide(elementId) {
+                let el = document.getElementById(elementId);
+                let display = el.style.display;
+                if (display == "none") {
+                    el.style.width = "initial";
+                } else {
+                    el.style.width = "none";
+                }
+                console.log(display)
+            }
+
+            function foldWidth(elementId) {
+                let el = document.getElementById(elementId);
+                el.classList.toggle('folded-width')
+                if (sessionStorage.getItem('side_pane_folded') == 1) {
+                    sessionStorage.setItem('side_pane_folded', 0);
+                } else {
+                    sessionStorage.setItem('side_pane_folded', 1);
+                }
+            }
+
+            if (sessionStorage.getItem('side_pane_folded') == 1) {
+                document.getElementById('side-menu').classList.add('folded-width');
+            }
+        </script>
     </body>
 </html>

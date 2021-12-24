@@ -177,3 +177,8 @@ input[type="submit"] {
     padding: 10px;
     border-bottom: 1px solid var(--grim-gray);
 } .lined-list li:last-child {border-bottom: none;}
+
+nav#tenant-list .lined-list li {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

@@ -154,3 +154,14 @@ nav#options > *:first-child {
     background: url('../resources/images/room-0.jpg');
 }
 */
+
+aside.page .page-content {
+  overflow-y: auto;
+  height:0;
+  min-height:100%;
+}
+
+aside.page.folded-width .page-content::-webkit-scrollbar {
+    overflow: hidden;
+    display: none;
+}

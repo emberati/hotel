@@ -1,7 +1,7 @@
 from sqlalchemy.exc import SQLAlchemyError
 
 from app import app, db
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, session
 from flask_login import LoginManager, current_user, login_required, login_user, logout_user
 
 from app.data import TenantsListData
@@ -37,8 +37,7 @@ def booking():
         # room_id = room.room_id.data
     if rent.update_on_submit():
         pass
-    if rent.validate_on_submit():
-        rents_db = []
+    elif rent.validate_on_submit():
         sess = db.session
         for tenant in rent.tenants:
             for room in rent.rooms:
@@ -74,8 +73,9 @@ def booking():
         flash('Бронирование прошло успешно!', category='message')
         return redirect('index')
     else:
-        flash('errors', category='warning')
-        print(rent.errors)
+        if rent.errors:
+            flash('errors', category='warning')
+            print(rent.errors)
         for room in rent.rooms:
             print('room room id:', type(room.room_id.data), room.room_id.data)
         for tenant in rent.tenants:
@@ -90,7 +90,8 @@ def booking():
 
 @app.route('/statistics')
 def statistics():
-    return render_template('statistics.html')
+    tenants_list_dto = TenantsListData.get_tenants_list_data(current_user)
+    return render_template('statistics.html', tenants_list_dto=tenants_list_dto)
 
 
 @app.route('/login', methods=['POST', 'GET'])

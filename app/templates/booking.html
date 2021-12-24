@@ -6,7 +6,6 @@
 {% block content %}
     <form id="rent" action="" method="POST">
         {{rent.hidden_tag()}}
-
         {% for room_dto in rent_dto.available_rooms %}
             <section id="room-{{room_dto.id}}-description" class="room-description hidden">
                 <div class="text-room-description">
