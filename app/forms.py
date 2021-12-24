@@ -22,7 +22,7 @@ class TenantForm(FlaskForm):
     doc_number      = StringField('Серия и номер документа', validators=[input_required(), length(min=6)])
     date_of_birth   = DateField('Дата рождения', validators=[input_required()])
     phone           = TelField('Номер телефона', validators=[optional()])
-    email           = EmailField('Номер телефона', validators=[optional(), email()])
+    email           = EmailField('Электронная почта', validators=[optional(), email()])
 
     def add_room_id(self, room_id):
         self.room_id.choices.append(room_id)
