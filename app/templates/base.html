@@ -9,7 +9,12 @@
         <div class="hg-page-outer">
             <header>
                 <div class="nav-wrapper content">
-                    <nav id="top-menu" class="menu-items">
+                    <div id="menu-button" class="vertical-align-wrapper menu-item-wrapper" onclick="expandMenu()">
+                        <div class="menu-button-row upper"></div>
+                        <div class="menu-button-row middle"></div>
+                        <div class="menu-button-row lower"></div>
+                    </div>
+                    <nav id="top-menu" class="menu-items hidden">
                         <div class="vertical-align-wrapper underline-container menu-item-wrapper">
                             <a href="{{url_for('index')}}" class="page-link vertical-align-outer">
                                 <span class="vertical-align-inner">Главная</span>
@@ -98,6 +103,12 @@
                     el.style.width = "none";
                 }
                 console.log(display)
+            }
+
+            function expandMenu() {
+                let el = document.getElementById('top-menu')
+                el.classList.toggle('hidden')
+                console.log('menu expanded')
             }
 
             function foldWidth(elementId) {

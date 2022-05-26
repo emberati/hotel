@@ -123,6 +123,10 @@ nav#options > *:first-child {
     margin-right: 20px;
 }
 
+nav#top-menu.hidden {
+    display: none;
+}
+
 .menu-items .underline {height: 5px;}
 .menu-items .page-link:hover ~ .underline::after,
 .menu-items .page-link:focus ~ .underline::after {
@@ -157,11 +161,112 @@ nav#options > *:first-child {
 
 aside.page .page-content {
   overflow-y: auto;
-  height:0;
-  min-height:100%;
+  height: 0;
+  min-height: 100%;
 }
 
 aside.page.folded-width .page-content::-webkit-scrollbar {
     overflow: hidden;
     display: none;
+}
+
+#menu-button {
+    z-index: 2;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+
+    width: 30px;
+    height: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 5px;
+    padding-left: 0;
+
+    cursor: pointer;
+}
+
+.menu-button-row {
+    height: 3px;
+    width: 100%;
+    background-color: var(--layout-foreground);
+    transition: background-color .3s ease;
+}
+
+#menu-button:hover .menu-button-row {
+    background-color: var(--gold-orange);
+}
+
+@media screen and (max-width: 900px) {
+    header {
+        position: fixed;
+        width: 100%;
+    }
+
+    #top-menu {
+        box-sizing: border-box;
+        overflow: hidden;
+        position: fixed;
+        width: 90%;
+        height: auto;
+        top: 60px;
+
+        flex-direction: column;
+        background-color: var(--deep-sea-transparent);
+        backdrop-filter: blur(5px);
+        box-shadow: 4px 0 10px 1px #0000003a;
+        border: 1px solid var(--deep-sea);
+        border-radius: 15px;
+    }
+
+    #top-menu > * {
+        margin-right: 0!important;
+        border-bottom: 1px solid var(--deep-sea);
+        position: relative;
+        display: inherit;
+    } #top-menu > *:last-child {border: none;}
+
+    #top-menu .menu-item-wrapper > a {
+        z-index: 2;
+        width: 100%;
+        padding: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #top-menu .underline {
+        z-index: 1;
+        position: absolute;
+        height: 100%;
+    }
+
+    #menu-button {
+        display: flex;
+    }
+
+    .hg-page-outer {
+        grid-template-rows: none;
+    }
+
+    .hg-page-inner.content > * {border: none;}
+    .hg-page-inner.content {
+        flex-direction: column;
+        border-left:    1px solid var(--grim-gray);
+        border-right:   1px solid var(--grim-gray);
+    }
+
+    main.page {
+        padding-top: 100px;
+    }
+
+    aside.page .page-content {
+        height: auto;
+
+    }
+
+    aside.page {
+        flex: none;
+        min-width: auto;
+    }
 }
